@@ -17,12 +17,11 @@ def loadData():
 
     return {'data': trainSet, 'target': labelSet}
 
-
-
 knn = neighbors.KNeighborsClassifier()
 
 data = loadData()
 knn.fit(data['data'], data['target'])
+
 with open('pre.csv', 'rt', encoding='utf-8') as csvfile:
     lines = csv.reader(csvfile)
     ac = 0
@@ -34,8 +33,6 @@ with open('pre.csv', 'rt', encoding='utf-8') as csvfile:
         if str(row[56]) == str(presresult[0]):
             ac += 1
         total += 1
-        print('预测值：', presresult[0])
-        print(' 真实值：', row[56])
     print('total=',total,'ac=',ac)
     print('准确率：',str(ac/float(total)*100),'%')
 
